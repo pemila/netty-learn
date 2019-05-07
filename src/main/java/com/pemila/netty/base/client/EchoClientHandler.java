@@ -1,15 +1,11 @@
-package com.pemila.netty.client;
+package com.pemila.netty.base.client;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
-import io.netty.util.concurrent.EventExecutorGroup;
-
-import java.nio.charset.Charset;
 
 /**
  * @author 月在未央
@@ -21,7 +17,7 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("client channelActive....");
-        ctx.writeAndFlush(Unpooled.copiedBuffer("Netty socks!",CharsetUtil.UTF_8));
+        ctx.writeAndFlush(Unpooled.copiedBuffer("Hello World!",CharsetUtil.UTF_8));
     }
 
     @Override

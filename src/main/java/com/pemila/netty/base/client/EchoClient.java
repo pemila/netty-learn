@@ -1,4 +1,4 @@
-package com.pemila.netty.client;
+package com.pemila.netty.base.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;

@@ -1,4 +1,4 @@
-package com.pemila.netty.server;
+package com.pemila.netty.base.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -22,11 +22,15 @@ public class EchoServer {
     }
 
     public void start() throws InterruptedException {
-        EventLoopGroup group = new NioEventLoopGroup();
+        // 用于接收连接
+        EventLoopGroup bossGroup = new NioEventLoopGroup();
+        // 用于处理已接受的连接
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
+
         try {
-            ServerBootstrap sbs = new ServerBootstrap();
+            ServerBootstrap serverBootstrap = new ServerBootstrap();
                 //绑定线程池
-            sbs.group(group)
+            serverBootstrap.group(bossGroup,workerGroup)
                     //指定使用的channel
                     .channel(NioServerSocketChannel.class)
                     //绑定监听端口
@@ -41,13 +45,14 @@ public class EchoServer {
                         }
                     });
             //服务器异步创建绑定
-            ChannelFuture channelFuture = sbs.bind().sync();
+            ChannelFuture channelFuture = serverBootstrap.bind().sync();
             System.out.println(EchoServer.class+" start and listen on "+channelFuture.channel().localAddress());
             //关闭服务器通道
             channelFuture.channel().closeFuture().sync();
         } finally {
             //释放线程池资源
-            group.shutdownGracefully().sync();
+            bossGroup.shutdownGracefully().sync();
+            workerGroup.shutdownGracefully().sync();
         }
     }
 
