@@ -40,7 +40,7 @@ public class EchoClient {
                     .remoteAddress(new InetSocketAddress(this.host,this.port))
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        protected void initChannel(SocketChannel socketChannel) {
                             System.out.println("已连接....");
                             socketChannel.pipeline().addLast(new EchoClientHandler());
                         }

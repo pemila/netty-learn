@@ -15,20 +15,20 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 
 
     @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+    public void channelActive(ChannelHandlerContext ctx) {
         System.out.println("client channelActive....");
         ctx.writeAndFlush(Unpooled.copiedBuffer("Hello World!",CharsetUtil.UTF_8));
     }
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
         System.out.println("client channelRead....");
         ByteBuf buf = msg.readBytes(msg.readableBytes());
         System.out.println("client received:" + ByteBufUtil.hexDump(buf)+"; value is:"+buf.toString(CharsetUtil.UTF_8));
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();
         ctx.close();
     }
