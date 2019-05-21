@@ -1,4 +1,4 @@
-package com.pemila.nio.nioserver;
+package com.pemila.nio.nioserver.other;
 
 import com.pemila.nio.nioserver.message.Message;
 import com.pemila.nio.nioserver.message.MessageBuffer;
@@ -22,7 +22,7 @@ public class WriteProxy {
         return this.messageBuffer.getMessage();
     }
 
-    boolean enqueue(Message message){
+    public boolean enqueue(Message message){
         return this.writeQueue.offer(message);
     }
 

@@ -1,6 +1,6 @@
 package com.pemila.nio.nioserver.message;
 
-import com.pemila.nio.nioserver.QueueIntFlip;
+import com.pemila.nio.nioserver.other.QueueIntFlip;
 
 /**
  * @author 月在未央

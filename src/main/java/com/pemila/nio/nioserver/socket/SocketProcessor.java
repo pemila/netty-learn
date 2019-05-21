@@ -1,6 +1,6 @@
 package com.pemila.nio.nioserver.socket;
 
-import com.pemila.nio.nioserver.WriteProxy;
+import com.pemila.nio.nioserver.other.WriteProxy;
 import com.pemila.nio.nioserver.message.*;
 
 import java.io.IOException;
@@ -53,7 +53,20 @@ public class SocketProcessor implements Runnable{
 
     @Override
     public void run() {
+        System.out.println("Processor start");
+        while(true){
+            try{
+                executeCycle();
+            } catch(IOException e){
+                e.printStackTrace();
+            }
 
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void executeCycle() throws IOException {

@@ -3,6 +3,7 @@ package com.pemila.nio.nioserver;
 import com.pemila.nio.nioserver.message.IMessageProcessor;
 import com.pemila.nio.nioserver.message.Message;
 import com.pemila.nio.nioserver.message.http.HttpMessageReaderFactory;
+import com.pemila.nio.nioserver.other.Server;
 
 import java.io.IOException;
 
@@ -21,7 +22,7 @@ public class Main {
 
         byte[] httpResponseBytes = httpResponse.getBytes("UTF-8");
 
-        // 构造消息处理器
+        // 消息处理器
         IMessageProcessor messageProcessor = (requestMsg,writeProxy)->{
             System.out.println("Message Received from socket: "+ requestMsg.socketId);
 
@@ -29,7 +30,6 @@ public class Main {
 
             responseMsg.socketId = requestMsg.socketId;
             responseMsg.writeToMessage(httpResponseBytes);
-
             writeProxy.enqueue(responseMsg);
         };
 

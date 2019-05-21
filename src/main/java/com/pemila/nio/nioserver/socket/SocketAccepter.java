@@ -25,6 +25,7 @@ public class SocketAccepter implements Runnable{
 
     @Override
     public void run() {
+        System.out.println("Accepter start");
         try {
             // 创建ServerSocketChannel并指定监听端口
             this.serverSocket = ServerSocketChannel.open();

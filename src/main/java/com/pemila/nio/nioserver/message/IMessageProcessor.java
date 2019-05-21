@@ -1,6 +1,6 @@
 package com.pemila.nio.nioserver.message;
 
-import com.pemila.nio.nioserver.WriteProxy;
+import com.pemila.nio.nioserver.other.WriteProxy;
 
 /**
  * @author 月在未央

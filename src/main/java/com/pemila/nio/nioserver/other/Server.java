@@ -1,4 +1,4 @@
-package com.pemila.nio.nioserver;
+package com.pemila.nio.nioserver.other;
 
 import com.pemila.nio.nioserver.message.IMessageProcessor;
 import com.pemila.nio.nioserver.message.IMessageReaderFactory;
@@ -31,6 +31,7 @@ public class Server {
     }
 
     public void start() throws IOException {
+        System.out.println("NIO Server start!");
         // 创建队列用于存放socket
         Queue<Socket> socketQueue = new ArrayBlockingQueue<>(1024);
         // 创建接收线程
@@ -44,5 +45,7 @@ public class Server {
         this.socketProcessor = new SocketProcessor(socketQueue,readBuffer,writeBuffer,this.messageReaderFactory,this.messageProcessor);
         Thread processorThread = new Thread(this.socketProcessor);
         processorThread.start();
+
+        System.out.println("NIO Server started!");
     }
 }
