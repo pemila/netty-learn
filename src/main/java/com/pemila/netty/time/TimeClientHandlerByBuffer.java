@@ -39,6 +39,7 @@ public class TimeClientHandlerByBuffer extends ChannelInboundHandlerAdapter {
         buf.writeBytes(m);
         m.release(); // 释放参数的缓存区
         // 只有当可读字节数 >=4 时，读取数据，然后关闭，否则等待继续传输
+        // 4字节是基于TIME协议的返回值为32bit整数
         if(buf.readableBytes()>= 4 ){
             long currentTimeMillis = ( buf.readUnsignedInt() - 2208988800L) * 1000L;
             System.out.println(new Date(currentTimeMillis));
