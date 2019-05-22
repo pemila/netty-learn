@@ -19,14 +19,14 @@ public class TimeClientHandlerByBuffer extends ChannelInboundHandlerAdapter {
 
     @Override
     public void handlerAdded(ChannelHandlerContext ctx){
-        // channleHandler生命周期开始时
+        // channelHandle生命周期开始时
         // 创建一个容量为4的内部缓存区
         buf = ctx.alloc().buffer(4);
     }
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx){
-        // channleHandler生命周期结束时
+        // channelHandle生命周期结束时
         // 释放掉创建的缓存区
         buf.release();
         buf = null;
