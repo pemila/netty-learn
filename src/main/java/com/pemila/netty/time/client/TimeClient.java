@@ -1,5 +1,6 @@
-package com.pemila.netty.time;
+package com.pemila.netty.time.client;
 
+import com.pemila.netty.time.codec.TimeDecoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

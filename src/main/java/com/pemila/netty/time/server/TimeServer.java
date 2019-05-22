@@ -1,5 +1,6 @@
-package com.pemila.netty.time;
+package com.pemila.netty.time.server;
 
+import com.pemila.netty.time.codec.TimeEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -30,7 +31,7 @@ public class TimeServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new TimeServerHandler());
+                            ch.pipeline().addLast(new TimeEncoder(),new TimeServerHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG,128)

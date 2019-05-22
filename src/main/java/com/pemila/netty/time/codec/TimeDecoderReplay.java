@@ -1,4 +1,4 @@
-package com.pemila.netty.time;
+package com.pemila.netty.time.codec;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
